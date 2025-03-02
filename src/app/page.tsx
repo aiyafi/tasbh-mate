@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import NumberFlow, { continuous } from '@number-flow/react';
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/DockFunc";
+import { Particles } from "@/components/magicui/particles";
+import { useTheme as useNextTheme } from "next-themes";
 
 export default function HomePage() {
   const [count, setCount] = useState(0);
@@ -38,15 +40,26 @@ export default function HomePage() {
     setCount((prev) => prev + 1);
   };
 
+  // Custom hook to get the current theme and toggle between light and dark.
+  function useTheme() {
+    const { resolvedTheme, theme, setTheme } = useNextTheme();
+    return { resolvedTheme, theme, setTheme };
+  }
+
+  const { resolvedTheme } = useTheme();
+  const [color, setColor] = useState("#ffffff");
+
+  useEffect(() => {
+    setColor(resolvedTheme === "dark" ? "#ffffff" : "#000000");
+  }, [resolvedTheme]);
+
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Top Bar with Decrement, Reset, and Goal buttons */}
       <div className="p-4 flex justify-between items-center">
         <div>
           <Button onClick={() => setCount((prev) => (prev > 0 ? prev - 1 : 0))}>
             Decrement
           </Button>
-
         </div>
         <div>
           <Button
@@ -69,6 +82,13 @@ export default function HomePage() {
           <NumberFlow
             plugins={[continuous]}
             value={count}
+          />
+          <Particles
+            className="absolute inset-0 z-0"
+            quantity={100}
+            ease={80}
+            color={color}
+            refresh
           />
         </div>
       </div>

@@ -1,7 +1,15 @@
 "use client"
 
 import * as React from "react"
-import { Moon, Sun, CalendarIcon, HomeIcon, BarChartIcon, SettingsIcon, HelpCircleIcon } from "lucide-react"
+import {
+    Moon,
+    Sun,
+    CalendarIcon,
+    HomeIcon,
+    BarChartIcon,
+    SettingsIcon,
+    HelpCircleIcon,
+} from "lucide-react"
 import { useTheme } from "next-themes"
 import Link from "next/link"
 
@@ -14,6 +22,14 @@ import {
     TooltipProvider,
     TooltipTrigger,
 } from "@/components/ui/tooltip"
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger as DialogTriggerComponent,
+} from "@/components/ui/dialog"
 import { cn } from "@/lib/utils"
 import { Dock, DockIcon } from "@/components/magicui/dock"
 
@@ -40,27 +56,74 @@ export function ModeToggle({ className }: { className?: string }) {
     return (
         <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center p-4">
             <TooltipProvider>
-                {/* Pass a flag to disable interactive motions on touch devices */}
                 <Dock direction="middle" disableInteractive={isTouch}>
                     {DATA.navbar.map((item) => (
                         <DockIcon key={item.label}>
-                            <Tooltip>
-                                <TooltipTrigger asChild>
-                                    <Link
-                                        href={item.href}
-                                        aria-label={item.label}
-                                        className={cn(
-                                            buttonVariants({ variant: "ghost", size: "icon" }),
-                                            "size-12 rounded-full"
-                                        )}
-                                    >
-                                        <item.icon className="size-4" />
-                                    </Link>
-                                </TooltipTrigger>
-                                <TooltipContent>
-                                    <p>{item.label}</p>
-                                </TooltipContent>
-                            </Tooltip>
+                            {item.label === "❔" ? (
+                                <Dialog>
+                                    <Tooltip>
+                                        <TooltipTrigger asChild>
+                                            <DialogTriggerComponent asChild>
+                                                <Button
+                                                    variant="ghost"
+                                                    size="icon"
+                                                    className={cn(
+                                                        buttonVariants({ variant: "ghost", size: "icon" }),
+                                                        "size-12 rounded-full"
+                                                    )}
+                                                >
+                                                    <item.icon className="size-4" />
+                                                </Button>
+                                            </DialogTriggerComponent>
+                                        </TooltipTrigger>
+                                        <TooltipContent>
+                                            <p>{item.label}</p>
+                                        </TooltipContent>
+                                    </Tooltip>
+                                    <DialogContent>
+                                        <DialogHeader>
+                                            <DialogTitle className="text-lg md:text-xl font-semibold">Credits</DialogTitle>
+                                            <DialogDescription className="space-y-4 py-4 text-sm md:text-base lg:text-lg">
+                                                <p className="mb-2">
+                                                    Crafted with a bit of ✨ magic ✨ and ❤️ by
+                                                    <a href="https://yafff.tech" target="_blank" rel="noopener noreferrer"
+                                                        className="text-blue-500 hover:cursor-help ml-1"> K9Fox
+                                                    </a>
+                                                </p>
+
+                                                <div className="p-4 rounded-lg">
+                                                    <p className="font-semibold text-sm md:text-base lg:text-lg">Cooked up with: </p>
+                                                    <ul className="list-disc list-inside ml-4 text-sm md:text-base lg:text-lg">
+                                                        <li>🚀 Next.js + TypeScript</li>
+                                                        <li>🎨 Tailwind CSS</li>
+                                                        <li>🔮 shadcn/ui</li>
+                                                        <li>🖥️ VS Code + Copilot saves</li>
+                                                    </ul>
+                                                </div>
+                                                <p className="mt-4 text-sm md:text-base lg:text-lg">Shoutout to the devs makin’ the web go brrr 💜</p>
+                                            </DialogDescription>
+                                        </DialogHeader>
+                                    </DialogContent>
+                                </Dialog>
+                            ) : (
+                                <Tooltip>
+                                    <TooltipTrigger asChild>
+                                        <Link
+                                            href={item.href}
+                                            aria-label={item.label}
+                                            className={cn(
+                                                buttonVariants({ variant: "ghost", size: "icon" }),
+                                                "size-12 rounded-full"
+                                            )}
+                                        >
+                                            <item.icon className="size-4" />
+                                        </Link>
+                                    </TooltipTrigger>
+                                    <TooltipContent>
+                                        <p>{item.label}</p>
+                                    </TooltipContent>
+                                </Tooltip>
+                            )}
                         </DockIcon>
                     ))}
                     <Separator orientation="vertical" className="h-full py-2" />
