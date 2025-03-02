@@ -77,22 +77,26 @@ export function ModeToggle({ className }: { className?: string }) {
                                             </DialogTriggerComponent>
                                         </TooltipTrigger>
                                         <TooltipContent>
-                                            <p>{item.label}</p>
+                                            <div>{item.label}</div>
                                         </TooltipContent>
                                     </Tooltip>
                                     <DialogContent>
                                         <DialogHeader>
                                             <DialogTitle className="text-lg md:text-xl font-semibold">Credits</DialogTitle>
                                             <DialogDescription className="space-y-4 py-4 text-sm md:text-base lg:text-lg">
-                                                <p className="mb-2">
+                                                <div className="mb-2">
                                                     Crafted with a bit of ✨ magic ✨ and ❤️ by
-                                                    <a href="https://yafff.tech" target="_blank" rel="noopener noreferrer"
-                                                        className="text-blue-500 hover:cursor-help ml-1"> K9Fox
+                                                    <a
+                                                        href="https://yafff.tech"
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="text-blue-500 hover:cursor-help ml-1"
+                                                    >
+                                                        K9Fox
                                                     </a>
-                                                </p>
-
+                                                </div>
                                                 <div className="p-4 rounded-lg">
-                                                    <p className="font-semibold text-sm md:text-base lg:text-lg">Cooked up with: </p>
+                                                    <div className="font-semibold text-sm md:text-base lg:text-lg">Cooked up with:</div>
                                                     <ul className="list-disc list-inside ml-4 text-sm md:text-base lg:text-lg">
                                                         <li>🚀 Next.js + TypeScript</li>
                                                         <li>🎨 Tailwind CSS</li>
@@ -100,7 +104,9 @@ export function ModeToggle({ className }: { className?: string }) {
                                                         <li>🖥️ VS Code + Copilot saves</li>
                                                     </ul>
                                                 </div>
-                                                <p className="mt-4 text-sm md:text-base lg:text-lg">Shoutout to the devs makin’ the web go brrr 💜</p>
+                                                <div className="mt-4 text-sm md:text-base lg:text-lg">
+                                                    Shoutout to the devs makin’ the web go brrr 💜
+                                                </div>
                                             </DialogDescription>
                                         </DialogHeader>
                                     </DialogContent>
@@ -120,7 +126,7 @@ export function ModeToggle({ className }: { className?: string }) {
                                         </Link>
                                     </TooltipTrigger>
                                     <TooltipContent>
-                                        <p>{item.label}</p>
+                                        <div>{item.label}</div>
                                     </TooltipContent>
                                 </Tooltip>
                             )}
@@ -142,7 +148,7 @@ export function ModeToggle({ className }: { className?: string }) {
                                 </Button>
                             </TooltipTrigger>
                             <TooltipContent>
-                                <p>Theme</p>
+                                <div>Theme</div>
                             </TooltipContent>
                         </Tooltip>
                     </DockIcon>
