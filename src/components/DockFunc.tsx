@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { Moon, Sun, CalendarIcon, HomeIcon, BarChartIcon, SettingsIcon } from "lucide-react"
+import { Moon, Sun, CalendarIcon, HomeIcon, BarChartIcon, SettingsIcon, HelpCircleIcon } from "lucide-react"
 import { useTheme } from "next-themes"
 import Link from "next/link"
 
@@ -23,6 +23,7 @@ const DATA = {
         { href: "#", icon: CalendarIcon, label: "Goals" },
         { href: "#", icon: BarChartIcon, label: "Stats" },
         { href: "#", icon: SettingsIcon, label: "Settings" },
+        { href: "#", icon: HelpCircleIcon, label: "❔" },
     ],
 }
 
