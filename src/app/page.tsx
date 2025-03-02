@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import NumberFlow, { continuous } from '@number-flow/react';
 import { Button } from "@/components/ui/button";
+import { ModeToggle } from "@/components/DockFunc";
 
 export default function HomePage() {
   const [count, setCount] = useState(0);
@@ -45,25 +46,21 @@ export default function HomePage() {
           <Button onClick={() => setCount((prev) => (prev > 0 ? prev - 1 : 0))}>
             Decrement
           </Button>
-          <Button 
+
+        </div>
+        <div>
+          <Button
             variant="outline"
             onClick={() => setCount(0)}
             className="ml-2">
-              Reset
+            Reset
           </Button>
-        </div>
-        <div>
-          {goal === null ? (
-            <Button onClick={() => setGoal(count)}>Set Goal</Button>
-          ) : (
-            <span className="text-lg font-semibold">Goal: {goal}</span>
-          )}
         </div>
       </div>
 
       {/* Full-screen tappable area */}
       <div
-        className="flex-1 flex justify-center items-center bg-gray-100 select-none"
+        className="flex-1 flex justify-center items-center select-none"
         onClick={handleFullScreenClick}
         // Prevents mobile double-tap zoom
         style={{ touchAction: "manipulation" }}
@@ -75,6 +72,7 @@ export default function HomePage() {
           />
         </div>
       </div>
+      <ModeToggle />
     </div>
   );
 }
