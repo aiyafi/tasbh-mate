@@ -19,7 +19,7 @@ import { Dock, DockIcon } from "@/components/magicui/dock"
 
 const DATA = {
     navbar: [
-        { href: "#", icon: HomeIcon, label: "Home" },
+        { href: "/", icon: HomeIcon, label: "Home" },
         { href: "#", icon: CalendarIcon, label: "Goals" },
         { href: "#", icon: BarChartIcon, label: "Stats" },
         { href: "#", icon: SettingsIcon, label: "Settings" },
@@ -28,11 +28,19 @@ const DATA = {
 
 export function ModeToggle({ className }: { className?: string }) {
     const { setTheme, theme } = useTheme()
+    const [isTouch, setIsTouch] = React.useState(false)
+
+    React.useEffect(() => {
+        if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) {
+            setIsTouch(true)
+        }
+    }, [])
 
     return (
         <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center p-4">
             <TooltipProvider>
-                <Dock direction="middle">
+                {/* Pass a flag to disable interactive motions on touch devices */}
+                <Dock direction="middle" disableInteractive={isTouch}>
                     {DATA.navbar.map((item) => (
                         <DockIcon key={item.label}>
                             <Tooltip>

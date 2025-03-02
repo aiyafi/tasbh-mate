@@ -19,6 +19,7 @@ export interface DockProps extends VariantProps<typeof dockVariants> {
   iconMagnification?: number;
   iconDistance?: number;
   direction?: "top" | "middle" | "bottom";
+  disableInteractive?: boolean; // Added new property
   children: React.ReactNode;
 }
 
@@ -39,6 +40,7 @@ const Dock = React.forwardRef<HTMLDivElement, DockProps>(
       iconMagnification = DEFAULT_MAGNIFICATION,
       iconDistance = DEFAULT_DISTANCE,
       direction = "middle",
+      disableInteractive = false,
       ...props
     },
     ref,
@@ -60,12 +62,19 @@ const Dock = React.forwardRef<HTMLDivElement, DockProps>(
       });
     };
 
+    const eventHandlers = disableInteractive
+      ? {}
+      : {
+        onMouseMove: (e: React.MouseEvent<HTMLDivElement>) =>
+          mouseX.set(e.pageX),
+        onMouseLeave: () => mouseX.set(Infinity),
+      };
+
     return (
       <motion.div
         ref={ref}
-        onMouseMove={(e) => mouseX.set(e.pageX)}
-        onMouseLeave={() => mouseX.set(Infinity)}
         {...props}
+        {...eventHandlers}
         className={cn(dockVariants({ className }), {
           "items-start": direction === "top",
           "items-center": direction === "middle",
