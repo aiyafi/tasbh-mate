@@ -58,14 +58,15 @@ export default function HomePage() {
       <div className="p-4 flex justify-between items-center">
         <div>
           <Button onClick={() => setCount((prev) => (prev > 0 ? prev - 1 : 0))}>
-            Decrement
+            Minus
           </Button>
         </div>
         <div>
           <Button
+            className="ml-2 bg-background/80 backdrop-blur-md"
             variant="outline"
             onClick={() => setCount(0)}
-            className="ml-2">
+          >
             Reset
           </Button>
         </div>

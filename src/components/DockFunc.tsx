@@ -12,7 +12,7 @@ import {
 } from "lucide-react"
 import { useTheme } from "next-themes"
 import Link from "next/link"
-
+import { motion } from "motion/react"
 import { Button } from "@/components/ui/button"
 import { buttonVariants } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
@@ -53,8 +53,27 @@ export function ModeToggle({ className }: { className?: string }) {
         }
     }, [])
 
+    // Motion animation
+    const dockAnimation = {
+        hidden: { y: 100, opacity: 0 },
+        show: {
+            y: 0,
+            opacity: 1,
+            transition: {
+                type: "spring",
+                stiffness: 300,
+                damping: 20,
+                delay: 0.2
+            }
+        }
+    }
+
     return (
-        <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center p-4">
+        <motion.div
+            className="fixed bottom-0 left-0 right-0 z-50 flex justify-center p-4"
+            initial="hidden"
+            animate="show"
+            variants={dockAnimation}>
             <TooltipProvider>
                 <Dock direction="middle" disableInteractive={isTouch}>
                     {DATA.navbar.map((item) => (
@@ -154,6 +173,6 @@ export function ModeToggle({ className }: { className?: string }) {
                     </DockIcon>
                 </Dock>
             </TooltipProvider>
-        </div>
+        </motion.div>
     )
 }
