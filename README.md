@@ -1,6 +1,6 @@
 # TasbhMate
 
-A digital tasbih (prayer counter) application built with Next.js, helping users keep track of their dhikr and prayers.
+A digital tasbih (prayer counter) application built with React, helping users keep track of their dhikr.
 
 ## Features
 
