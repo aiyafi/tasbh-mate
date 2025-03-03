@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/DockFunc";
 import { Particles } from "@/components/magicui/particles";
 import { useTheme as useNextTheme } from "next-themes";
+import { motion } from 'motion/react';
 
 export default function HomePage() {
   const [count, setCount] = useState(0);
@@ -80,10 +81,16 @@ export default function HomePage() {
         style={{ touchAction: "manipulation" }}
       >
         <div className="lg:text-9xl text-8xl font-bold">
-          <NumberFlow
-            plugins={[continuous]}
-            value={count}
-          />
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.7 }}
+          >
+            <NumberFlow
+              plugins={[continuous]}
+              value={count}
+            />
+          </motion.div>
           <Particles
             className="absolute inset-0 z-0"
             quantity={100}
