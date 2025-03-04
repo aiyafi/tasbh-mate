@@ -7,6 +7,7 @@ import { ModeToggle } from "@/components/DockFunc";
 import { Particles } from "@/components/magicui/particles";
 import { useTheme as useNextTheme } from "next-themes";
 import { motion } from 'motion/react';
+import { Minus, RotateCcw } from 'lucide-react';
 
 export default function HomePage() {
   const [count, setCount] = useState(0);
@@ -57,9 +58,13 @@ export default function HomePage() {
   return (
     <div className="min-h-screen flex flex-col">
       <div className="p-4 flex justify-between items-center">
+        {/* Button with text or icons based on screen size */}
         <div>
           <Button onClick={() => setCount((prev) => (prev > 0 ? prev - 1 : 0))}>
-            Minus
+            <span className="hidden sm:inline">Minus</span>
+            <span className="sm:hidden">
+              <Minus size={24} />
+            </span>
           </Button>
         </div>
         <div>
@@ -68,7 +73,10 @@ export default function HomePage() {
             variant="outline"
             onClick={() => setCount(0)}
           >
-            Reset
+            <span className="hidden sm:inline">Reset</span>
+            <span className="sm:hidden">
+              <RotateCcw size={24} />
+            </span>
           </Button>
         </div>
       </div>
