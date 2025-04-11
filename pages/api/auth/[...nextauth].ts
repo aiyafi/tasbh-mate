@@ -37,7 +37,7 @@ export default NextAuth({
                 password: { label: "Password", type: "password" },
             },
             // FIX: Change 'req' to '_req' as it's unused
-            async authorize(credentials, _req) {
+            async authorize(credentials) {
                 // Replace this dummy logic with your actual authentication logic
                 // For example, you might fetch the user from your database
                 const { email, password } = credentials as {
