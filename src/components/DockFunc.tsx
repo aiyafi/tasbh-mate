@@ -136,7 +136,7 @@ export function ModeToggle({ className }: { className?: string }) {
                                                         </ul>
                                                     </div>
                                                     <div className="mt-4 text-sm md:text-base lg:text-lg">
-                                                        Shoutout to the devs makin' the web go brrr 💜
+                                                        Shoutout to the devs makin&apos; the web go brrr 💜
                                                     </div>
                                                 </div>
                                             </DialogDescription>

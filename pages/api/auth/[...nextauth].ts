@@ -1,8 +1,10 @@
+// pages/api/auth/[...nextauth].ts
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 
+// ... (declare module unchanged) ...
 declare module "next-auth" {
     interface Session {
         user: {
@@ -13,6 +15,7 @@ declare module "next-auth" {
         };
     }
 }
+
 
 export default NextAuth({
     providers: [
@@ -33,7 +36,8 @@ export default NextAuth({
                 email: { label: "Email", type: "text", placeholder: "you@example.com" },
                 password: { label: "Password", type: "password" },
             },
-            async authorize(credentials, req) {
+            // FIX: Change 'req' to '_req' as it's unused
+            async authorize(credentials, _req) {
                 // Replace this dummy logic with your actual authentication logic
                 // For example, you might fetch the user from your database
                 const { email, password } = credentials as {
@@ -52,7 +56,10 @@ export default NextAuth({
     ],
     callbacks: {
         async session({ session, token }) {
-            session.user.id = token.sub;
+            // Ensure session.user exists before assigning
+            if (session.user) {
+                session.user.id = token.sub;
+            }
             return session;
         },
     },
