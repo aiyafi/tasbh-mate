@@ -17,7 +17,6 @@ export default function HomePage() {
     }
     return 0;
   });
-  const [_goal, _setGoal] = useState<number | null>(null);
 
   // localStorage
   useEffect(() => {
