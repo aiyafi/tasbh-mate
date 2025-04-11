@@ -37,7 +37,7 @@ export const metadata: Metadata = {
 
   appleWebApp: { // iOS specific PWA settings
     capable: true, // Enables standalone mode on iOS
-    statusBarStyle: "default", // Style of the status bar ('default', 'black', 'black-translucent')
+    statusBarStyle: "black-translucent", // Style of the status bar ('default', 'black', 'black-translucent')
     title: APP_DEFAULT_TITLE, // Title shown when added to home screen
     // startUpImage: [], // Optional: Add startup images for different iOS devices
   },
