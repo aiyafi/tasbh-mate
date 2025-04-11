@@ -25,7 +25,8 @@ Currently, due to ongoing development and skill limitations, TasbhMate utilizes 
 - **Responsive Design**: Works on all devices from mobile to desktop.
 - **Particle Effects**: Beautiful interactive background particles.
 - **Authentication (Planned)**: User accounts via NextAuth (Google, GitHub, and credentials) will be implemented to link your count to your account for cross-device access.
-- **Prayer Tracking and History (Future)**: Plan to implement a feature to track and view your prayer history.
+- **PWA Support**: Install TasbhMate as a standalone app on your device for offline access and native-like experience.
+
 
 ## 🛠️ Tech Stack
 
