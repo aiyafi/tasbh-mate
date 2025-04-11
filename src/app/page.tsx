@@ -10,8 +10,19 @@ import { motion } from 'motion/react';
 import { Minus, RotateCcw } from 'lucide-react';
 
 export default function HomePage() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState<number>(() => {
+    if (typeof window !== 'undefined') {
+      const savedCount = localStorage.getItem('tasbhCount');
+      return savedCount ? parseInt(savedCount, 10) : 0;
+    }
+    return 0;
+  });
   const [goal, setGoal] = useState<number | null>(null);
+
+  // localStorage
+  useEffect(() => {
+    localStorage.setItem('tasbhCount', count.toString());
+  }, [count]);
 
   // Handle keyboard shortcuts: Spacebar to increment, Ctrl+Spacebar to decrement, "R" to reset.
   useEffect(() => {
@@ -81,7 +92,6 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Full-screen tappable area */}
       <div
         className="flex-1 flex justify-center items-center select-none"
         onClick={handleFullScreenClick}
