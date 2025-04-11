@@ -44,9 +44,9 @@ const DATA = {
     ],
 }
 
-export function ModeToggle({ className }: { className?: string }) {
+export function ModeToggle() {
     const { setTheme, theme } = useTheme()
-    const [isTouch, setIsTouch] = React.useState(false)
+    const [_, setIsTouch] = React.useState(false)
 
     React.useEffect(() => {
         // Ensure window exists before accessing matchMedia
